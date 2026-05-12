@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Caveat:wght@700&display=swap');
+@import "tailwindcss";
+
+
+@theme {
+  --color-bg-primary: #1A1A1A;
+  --color-bg-secondary: #4b607f;
+  --color-bg-accent: #f3701e;
+
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.6);
+
+  --color-brand: #2481cc;
+
+  --font-display: 'Russo One', sans-serif;
+  --font-script: 'Caveat', cursive;
+}
+
+@layer base {
+    .light {
+    --color-bg-primary: #ececec;
+    --color-text-primary: #272727;
+  }
+
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+  }
+
+  #root {
+    margin: 0 auto;
+    max-width: 1024px;
+    padding: 0 16px;
+  }
+}
