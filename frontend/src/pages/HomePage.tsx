@@ -1,6 +1,6 @@
 import { useAuth } from "../hooks/useAuth";
 
-export function HomePage() {
+export default function HomePage() {
   const { user, logout } = useAuth();
 
   return (
