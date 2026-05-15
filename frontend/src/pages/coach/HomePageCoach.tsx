@@ -1,7 +1,8 @@
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 
-export default function HomePage() {
-  const { user, logout } = useAuth();
+export default function HomePageCoach() {
+
+const { user, logout } = useAuth();
 
   return (
     <div className="bg-bg-secondary font-display text-3xl text-white">

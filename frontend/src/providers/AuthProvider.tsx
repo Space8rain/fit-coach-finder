@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useTelegram } from "../hooks/useTelegram";
 import { getWhoAmI, postAuthTg } from "../api/auth";
+import type { User } from "../types/user";
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const tgWebApp = useTelegram();
@@ -10,7 +11,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(
     () => sessionStorage.getItem("token")
   );
-  const [user, setUser] = useState<TelegramUser | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -21,13 +22,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         sessionStorage.setItem("token", mockToken);
         setToken(mockToken);
       }
-      const mockUser = (tgWebApp?.initDataUnsafe?.user ?? null) as TelegramUser | null;
+
+      const mockUser = (tgWebApp?.initDataUnsafe?.user ?? null) as User | null;
       setUser(mockUser);
+
       setIsLoading(false);
       return;
     }
 
-    // Токен уже есть (обновление страницы) — восстанавливаем юзера
     if (token) {
       getWhoAmI()
         .then(res => setUser(res.data))
@@ -64,7 +66,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ token, user, isLoading, error, logout }}>
+    <AuthContext.Provider value={{ token, setToken, user, setUser, isLoading, error, logout }}>
       {children}
     </AuthContext.Provider>
   );
