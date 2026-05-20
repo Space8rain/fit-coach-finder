@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postAuth, postAuthRegister } from "../../api/auth";
 import { useAuth } from "../../hooks/useAuth";
+import { APP_NAME } from "../../config/app";
 
 type Tab = "login" | "register";
 
@@ -55,7 +56,7 @@ export function LoginPage() {
 
         <div className="text-center mb-8">
           <i className="ti ti-barbell text-3xl text-bg-accent" aria-hidden="true" />
-          <h1 className="font-display text-2xl text-text-primary mt-2 mb-1">FITAPP</h1>
+          <h1 className="font-display text-2xl text-text-primary mt-2 mb-1">{APP_NAME}</h1>
           <p className="text-sm text-text-secondary">Войди или создай аккаунт</p>
         </div>
 

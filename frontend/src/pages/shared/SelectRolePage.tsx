@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { postSetRole } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
+import { APP_NAME } from "../../config/app";
 
 interface RoleCardProps {
   title: string;
@@ -99,7 +100,7 @@ export function SelectRolePage() {
       <div className="w-full max-w-2xl rounded-2xl overflow-hidden">
 
         <header className="px-6 py-5 bg-black/30 flex items-center gap-3">
-          <span className="font-display text-text-primary text-lg tracking-wide">FITAPP</span>
+          <span className="font-display text-text-primary text-lg tracking-wide">{APP_NAME}</span>
         </header>
 
         <div className="flex flex-col sm:flex-row">

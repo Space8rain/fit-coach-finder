@@ -17,7 +17,7 @@
 }
 
 @layer base {
-    .light {
+  .light {
     --color-bg-primary: #ececec;
     --color-text-primary: #272727;
   }

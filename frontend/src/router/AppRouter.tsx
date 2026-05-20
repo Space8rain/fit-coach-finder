@@ -5,6 +5,7 @@ import { ClientRoutes } from "./ClientRoutes";
 import type { User } from "../types/user";
 import { Route, Routes } from "react-router-dom";
 import { LoginPage } from "../pages/shared/LoginPage";
+import NotFoundPage from "../pages/shared/NotFoundPage";
 
 function resolveElement(token: string | null, user: User | null) {
   if (!token) return <LoginPage />;
@@ -21,7 +22,8 @@ export function AppRouter() {
 
   return (
     <Routes>
-      <Route path="/*" element={resolveElement(token, user)} />
+      <Route path="/" element={resolveElement(token, user)} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };
