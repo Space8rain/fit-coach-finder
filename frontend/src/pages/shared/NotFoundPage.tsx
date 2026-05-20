@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { APP_NAME } from "../../config/app";
 
 export default function NotFoundPage() {
@@ -15,10 +16,11 @@ export default function NotFoundPage() {
         </div>
 
         <div className="px-6 py-4 bg-black/20 min-h-[48px] flex items-center justify-center ">
-          <a href="/" className="font-display text-text-primary text-lg tracking-wide hover:brightness-110 transition-all duration-200 group flex items-center gap-2">
+
+          <Link to={'/'} className="font-display text-text-primary text-lg tracking-wide hover:brightness-110 transition-all duration-200 group flex items-center gap-2">
             На главную
             <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">→</span>
-          </a>
+          </Link>
         </div>
       </div>
     </div>
