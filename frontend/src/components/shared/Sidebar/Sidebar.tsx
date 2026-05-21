@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { NAVIGATION } from "../../../config/navigation";
 import { useAuth } from "../../../hooks/useAuth";
+import "./sidebar.css";
 
 export function Sidebar({className}: {className?: string}) {
   const { user } = useAuth();

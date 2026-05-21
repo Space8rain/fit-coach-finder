@@ -1,0 +1,16 @@
+.mobile-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 15px;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.mobile-nav a:hover {
+  background: var(--color-bg-accent);
+}

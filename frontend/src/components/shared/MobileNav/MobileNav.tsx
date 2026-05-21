@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { NAVIGATION } from "../../../config/navigation";
 import { useAuth } from "../../../hooks/useAuth";
+import "./mobileNav.css";
 
 export function MobileNav({className}: {className?: string}) {
   const { user } = useAuth();
