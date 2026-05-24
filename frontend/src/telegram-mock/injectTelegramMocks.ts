@@ -8,6 +8,7 @@ export function injectTelegramMocks() {
         username: "mock_dev_username",
         language_code: "en",
         photo_url: "https://avatarko.ru/img/kartinka/1/Crazy_Frog.jpg",
+        role: "coach",
     };
 
     const initData = new URLSearchParams({
