@@ -1,5 +1,7 @@
+import { NavLink } from "react-router-dom";
 import type { User } from "../../../types/user";
 import styles from "./HeaderProfile.module.css";
+import { Settings } from "lucide-react";
 
 export const HeaderProfile = ({ user }: { user: User}) => {
 
@@ -10,9 +12,17 @@ export const HeaderProfile = ({ user }: { user: User}) => {
       </div>
 
       <div className={styles.info}>
-        {user && <p className="font-script text-3xl text-green-400">{user.first_name}!</p>}
-        <>⭐️⭐️⭐️⭐️☆ 4</>
+        <div>
+          <p className="text-3xl">{user.first_name}</p>
+          <p className="text-xl">{user.last_name}</p>
+        </div>
+
+        <p className={styles.rating}>⭐️⭐️⭐️⭐️☆ 4</p>
       </div>
+
+      <NavLink to={'/profile'} className={styles.config}>
+        <Settings size={20} />
+      </NavLink>
     </div>
   )
 }

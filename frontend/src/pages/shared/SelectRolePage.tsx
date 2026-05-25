@@ -21,7 +21,7 @@ function RoleCard({ title, description, onSelect, isLoading, variant }: RoleCard
       disabled={isLoading}
       className={`
         group
-        flex-1 flex flex-col justify-between p-8 text-left cursor-pointer
+        flex-1 flex flex-col justify-between p-6 text-left cursor-pointer
         transition-all duration-300 ease-out
         disabled:opacity-50 disabled:cursor-not-allowed
         ${isAccent
@@ -32,7 +32,7 @@ function RoleCard({ title, description, onSelect, isLoading, variant }: RoleCard
     >
       <div>
         <h2 className="
-          font-display text-3xl mb-4 leading-tight text-text-primary
+          font-display text-3xl mb-2 leading-tight text-text-primary
           transition-transform duration-300 ease-out
           group-hover:translate-x-1
         ">
@@ -48,8 +48,8 @@ function RoleCard({ title, description, onSelect, isLoading, variant }: RoleCard
       </div>
 
       <span className="
-        mt-8 w-full py-3 rounded-lg font-display text-sm tracking-wider
-        flex items-center justify-center gap-2
+        mt-8 w-full p-3 rounded-lg font-display text-sm tracking-wider
+        flex items-center justify-end gap-2
         transition-all duration-300 ease-out
         group-hover:gap-4
         bg-bg-primary text-text-primary

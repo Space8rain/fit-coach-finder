@@ -1,24 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Caveat:wght@700&display=swap');
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Snowstorm';
+  src: url('/src/assets/fonts/Snowstorm.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 @theme {
   --color-bg-primary: #1A1A1A;
   --color-bg-secondary: #0F95B0;
   --color-bg-accent: #f3701e;
 
-  --color-text-primary: #ffffff;
+  --color-text-primary: #EFE6DD;
   --color-text-secondary: rgba(255, 255, 255, 0.6);
 
   --color-brand: #2481cc;
 
   --font-display: 'Russo One', sans-serif;
+  --font-display: 'Snowstorm', sans-serif;
   --font-script: 'Caveat', cursive;
 }
 
 @layer base {
   .light {
-    --color-bg-primary: #ececec;
+    --color-bg-primary: #EFE6DD;
     --color-text-primary: #272727;
   }
 
@@ -29,6 +36,7 @@
     padding-right: env(safe-area-inset-right);
     background-color: var(--color-bg-primary);
     color: var(--color-text-primary);
+    font-family: var(--font-display);
   }
 
   #root {

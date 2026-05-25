@@ -3,12 +3,12 @@ export function injectTelegramMocks() {
 
     const user = {
         id: 123456,
-        first_name: "MockUser_first_name",
-        last_name: "Dev_last_name",
-        username: "mock_dev_username",
+        first_name: "Иван",
+        last_name: "Иванов",
+        username: "pussyHunter",
         language_code: "en",
         photo_url: "https://avatarko.ru/img/kartinka/1/Crazy_Frog.jpg",
-        role: "coach",
+        // role: "coach",
     };
 
     const initData = new URLSearchParams({

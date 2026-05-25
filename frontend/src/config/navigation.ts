@@ -9,16 +9,16 @@ export interface NavItem {
 export const NAVIGATION: Record<string, NavItem[]> = {
   coach: [
     { label: "Главная", path: "/", icon: Home },
-    { label: "Поиск", path: "search", icon: Search },
-    { label: "История", path: "history", icon: History },
-    { label: "Профиль", path: "profile", icon: User },
+    { label: "Поиск", path: "/search", icon: Search },
+    { label: "История", path: "/history", icon: History },
+    { label: "Профиль", path: "/profile", icon: User },
   ],
 
   client: [
     { label: "Главная", path: "/", icon: Home },
-    { label: "Поиск", path: "search", icon: Search },
-    { label: "История", path: "history", icon: History },
-    { label: "Профиль", path: "profile", icon: User },
+    { label: "Поиск", path: "/search", icon: Search },
+    { label: "История", path: "/history", icon: History },
+    { label: "Профиль", path: "/profile", icon: User },
   ],
 
   admin: [

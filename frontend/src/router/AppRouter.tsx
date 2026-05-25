@@ -22,7 +22,7 @@ export function AppRouter() {
 
   return (
     <Routes>
-      <Route path="/" element={resolveElement(token, user)} />
+      <Route path="/*" element={resolveElement(token, user)} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

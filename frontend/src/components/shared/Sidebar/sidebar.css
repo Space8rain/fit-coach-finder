@@ -22,6 +22,7 @@
 }
 
 .sidebar a {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,4 +46,15 @@
 
 .sidebar:hover a span {
   opacity: 1;
+}
+
+.sidebar a.active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-bg-accent);
+  border-radius: 2px;
 }
