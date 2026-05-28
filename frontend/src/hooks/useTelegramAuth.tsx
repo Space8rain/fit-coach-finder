@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useTelegram } from "./useTelegram";
 import { getWhoAmI, postAuthTg } from "../api/auth";
+import { useTelegramInit } from "./useTelegramInit";
 
 export function useTelegramAuth() {
-  const tgWebApp = useTelegram();
+  const tgWebApp = useTelegramInit();
 
   const initialToken = sessionStorage.getItem("token");
   const [token, setToken] = useState<string | null>(initialToken);
@@ -29,6 +29,7 @@ export function useTelegramAuth() {
       return;
     }
 
+    useTelegramInit();
     postAuthTg(JSON.stringify(tgWebApp.initData))
       .then(res => {
         const newToken = res.data.token;

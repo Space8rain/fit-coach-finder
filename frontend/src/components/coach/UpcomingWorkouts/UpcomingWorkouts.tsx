@@ -13,7 +13,18 @@ const workoutsData = [
       duration: '45 мин',
       price: '1500 руб'
     }
-  }
+  },
+  {
+    id: 2,
+    date: "12.12.2024",
+    time: "18:00",
+    info: {
+      name: 'Алексей Г.',
+      type: 'Кардио',
+      duration: '45 мин',
+      price: '1500 руб'
+    }
+  },
 ];
 
 export const UpcomingWorkouts = () => {
@@ -30,20 +41,20 @@ export const UpcomingWorkouts = () => {
       <div className={styles.workouts}>
         {workoutsData.map(workout => {
           return (
-            <div className={styles.workout}>
-              <p className={styles.date}>
+            <div key={workout.id} className={styles.workout}>
+              <div className={styles.date}>
                 <p className={styles.time}>{workout.time}</p>
                 {workout.date}
-              </p>
+              </div>
 
-              <p className={styles.info}>
+              <div className={styles.info}>
                 <div>
                   {workout.info.name}
                   {workout.info.type}
                 </div>
                 {workout.info.duration}
                 {workout.info.price}
-              </p>
+              </div>
 
               <NavLink to={'/profile'} className={styles.join}>
                 Войти

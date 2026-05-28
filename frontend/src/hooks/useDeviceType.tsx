@@ -7,7 +7,6 @@ export function useDeviceType(): DeviceType {
 
   useEffect(() => {
     const detect = (): DeviceType => {
-      // безопасно типизируем Telegram
       const tg = window?.Telegram?.WebApp;
       const platform = tg?.platform?.toLowerCase();
 

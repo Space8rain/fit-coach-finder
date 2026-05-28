@@ -21,4 +21,6 @@ export function useTelegramInit() {
             console.error("Failed to initialize Telegram WebApp:", err);
         }
     }, [tg]);
+
+    return tg;
 }

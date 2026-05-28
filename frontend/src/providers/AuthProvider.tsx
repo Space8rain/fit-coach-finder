@@ -7,7 +7,7 @@ import type { User } from "../types/user";
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const tgWebApp = useTelegram();
-
+  console.log('tg user:', tgWebApp?.initDataUnsafe?.user);
   const [token, setToken] = useState<string | null>(
     () => sessionStorage.getItem("token")
   );
