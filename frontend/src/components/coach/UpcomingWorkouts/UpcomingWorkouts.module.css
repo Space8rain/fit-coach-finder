@@ -1,0 +1,79 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  font-size: 24px;
+  color: var(--color-text-primary);
+}
+
+.viewAll {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.workouts {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.workout {
+  display: grid;
+  grid-template-columns: 90px 1fr 90px;
+  align-items: center;
+  padding: 20px;
+  gap: 12px;
+  background-color: var(--color-bg-secondary);
+  border-radius: 8px;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 16x;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-accent);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.time {
+  font-size: 20px;
+}
+
+.join {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 16x;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-accent);
+  border-radius: 8px;
+  padding: 8px;
+  height: 100%;
+  width: 90px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 6px;
+  }
+
+  .workout {
+    padding: 12px;
+  }
+}
