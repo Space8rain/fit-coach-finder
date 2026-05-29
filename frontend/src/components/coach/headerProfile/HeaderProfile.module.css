@@ -10,8 +10,8 @@
 
 .avatar {
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
@@ -53,12 +53,13 @@
 }
 
 .rating {
+  display: flex;
   margin-top: 8px;
   font-size: 14px;
   background-color: var(--color-bg-secondary);
   padding: 4px 8px;
   border-radius: 6px;
-  color: var(--color-text-primary);
+  color: var(--color-bg-accent-hover);
   max-width: fit-content;
 }
 

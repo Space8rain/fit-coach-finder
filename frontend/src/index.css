@@ -10,23 +10,56 @@
 
 @theme {
   --color-bg-primary: #1A1A1A;
-  --color-bg-secondary: #0F95B0;
-  --color-bg-accent: #f3701e;
+  --color-bg-secondary: #4b607f;
+  --color-bg-secondary-hover: #0F95B0;
+  --color-bg-accent: #f26838;
+  --color-bg-accent-hover: #f3701e;
 
-  --color-text-primary: #EFE6DD;
+  --color-text-primary: #f6f4e7;
   --color-text-secondary: rgba(255, 255, 255, 0.6);
 
   --color-brand: #2481cc;
 
-  --font-display: 'Russo One', sans-serif;
+  /* --font-display: 'Russo One', sans-serif; */
+  /* --font-script: 'Caveat', cursive; */
+
   --font-display: 'Snowstorm', sans-serif;
-  --font-script: 'Caveat', cursive;
+  --font-script: 'Russo One', sans-serif;
 }
 
 @layer base {
   .light {
-    --color-bg-primary: #EFE6DD;
+    --color-bg-primary: #e8d8c9;
     --color-text-primary: #272727;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-bg-accent) var(--color-bg-primary, transparent);
+  }
+
+  /* WebKit (Chrome, Edge, Safari, Opera) */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg-accent);
+    border-radius: 20px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-bg-accent);
+    border-radius: 20px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-bg-accent-hover);
+  }
+
+  ::-webkit-scrollbar:horizontal {
+    height: 7px;
   }
 
   body {
@@ -37,11 +70,11 @@
     background-color: var(--color-bg-primary);
     color: var(--color-text-primary);
     font-family: var(--font-display);
+    scrollbar-width: thin;
   }
 
   #root {
     margin: 0 auto;
     max-width: 1280px;
-    /* padding: 0 16px; */
   }
 }

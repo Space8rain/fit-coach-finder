@@ -9,18 +9,40 @@ const workoutsData = [
     time: "18:00",
     info: {
       name: 'Алексей Г.',
-      type: 'Кардио',
-      duration: '45 мин',
+      type: 'Скакалка',
+      duration: '30 мин',
       price: '1500 руб'
     }
   },
   {
     id: 2,
     date: "12.12.2024",
-    time: "18:00",
+    time: "19:40",
     info: {
-      name: 'Алексей Г.',
-      type: 'Кардио',
+      name: 'Александр Ж.',
+      type: 'Бокс',
+      duration: '45 мин',
+      price: '1500 руб'
+    }
+  },
+  {
+    id: 3,
+    date: "12.12.2024",
+    time: "19:40",
+    info: {
+      name: 'Александр Ж.',
+      type: 'Бокс',
+      duration: '45 мин',
+      price: '1500 руб'
+    }
+  },
+  {
+    id: 4,
+    date: "12.12.2024",
+    time: "19:40",
+    info: {
+      name: 'Александр Ж.',
+      type: 'Бокс',
       duration: '45 мин',
       price: '1500 руб'
     }
@@ -39,29 +61,27 @@ export const UpcomingWorkouts = () => {
       </div>
 
       <div className={styles.workouts}>
-        {workoutsData.map(workout => {
-          return (
-            <div key={workout.id} className={styles.workout}>
-              <div className={styles.date}>
-                <p className={styles.time}>{workout.time}</p>
-                {workout.date}
-              </div>
-
-              <div className={styles.info}>
-                <div>
-                  {workout.info.name}
-                  {workout.info.type}
-                </div>
-                {workout.info.duration}
-                {workout.info.price}
-              </div>
-
-              <NavLink to={'/profile'} className={styles.join}>
-                Войти
-              </NavLink>
+        {workoutsData.map((workout) => (
+          <div key={workout.id} className={styles.workoutCard}>
+            <div className={styles.date}>
+              <p className={styles.time}>{workout.time}</p>
+              <p className={styles.dateText}>{workout.date}</p>
             </div>
-          )
-        })}
+
+            <div className={styles.info}>
+              <div className={styles.name}>{workout.info.name}</div>
+              <div className={styles.type}>{workout.info.type}</div>
+
+              <div className={styles.details}>
+                <span>{workout.info.duration}</span>
+              </div>
+            </div>
+
+            <NavLink to="/profile" className={styles.join}>
+              Войти
+            </NavLink>
+          </div>
+        ))}
       </div>
     </div>
   );

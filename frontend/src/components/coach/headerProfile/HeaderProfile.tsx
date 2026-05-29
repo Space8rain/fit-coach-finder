@@ -1,16 +1,12 @@
 import { NavLink } from "react-router-dom";
 import type { User } from "../../../types/user";
 import styles from "./HeaderProfile.module.css";
-import { Settings } from "lucide-react";
+import { Settings, Star } from "lucide-react";
 import { useState } from "react";
 
-export const HeaderProfile = ({ user }: { user: User }) => {
+export const HeaderProfile = ({ user, status, toggleStatus }: { user: User; status: string; toggleStatus: () => void }) => {
 
   const [avatarError, setAvatarError] = useState(false);
-  const [isOnShift, setIsOnShift] = useState(false);
-  const onToggleShift = () => {
-    setIsOnShift(prev => !prev);
-  };
 
   return (
     <div className={styles.container}>
@@ -34,7 +30,13 @@ export const HeaderProfile = ({ user }: { user: User }) => {
           <p className={styles.lastName}>{user.last_name}</p>
         </div>
 
-        <p className={styles.rating}>⭐️⭐️⭐️⭐️☆ 4</p>
+        <p className={styles.rating}>
+          <Star size={20} fill="currentColor" />
+          <Star size={20} fill="currentColor" />
+          <Star size={20} fill="currentColor" />
+          <Star size={20} fill="currentColor" />
+          <Star size={20} fill="var(--color-bg-primary)" />
+        </p>
       </div>
 
       <div className={styles.actions}>
@@ -43,10 +45,10 @@ export const HeaderProfile = ({ user }: { user: User }) => {
         </NavLink>
 
         <button
-          className={`${styles.shiftButton} ${isOnShift ? styles.shiftActive : styles.shiftInactive}`}
-          onClick={onToggleShift}
+          className={`${styles.shiftButton} ${status === 'online' ? styles.shiftActive : styles.shiftInactive}`}
+          onClick={toggleStatus}
         >
-          {isOnShift ? 'Уйти со смены' : 'Выйти на смену'}
+          {status === 'online' ? 'Уйти со смены' : 'Выйти в онлайн'}
         </button>
       </div>
     </div>
