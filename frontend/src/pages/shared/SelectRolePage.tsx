@@ -65,7 +65,7 @@ function RoleCard({ title, description, onSelect, isLoading, variant }: RoleCard
   );
 }
 
-export function SelectRolePage() {
+export default function SelectRolePage() {
   const { user, setUser } = useAuth();
   const navigate = useNavigate();
 

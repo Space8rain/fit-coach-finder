@@ -1,4 +1,4 @@
-export const ProfilePageCoach = () => {
+export default function ProfilePageCoach() {
   return (
     <>Профиль</>
   )

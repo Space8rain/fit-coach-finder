@@ -1,4 +1,4 @@
-export const HistoryPageCoach = () => {
+export default function HistoryPageCoach() {
   return (
     <div>
       <h1>История тренировок</h1>

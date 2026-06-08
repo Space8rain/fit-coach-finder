@@ -9,7 +9,7 @@ export interface User {
   age?: number;
   height?: number;
   weight?: number;
-  role?: "client" | "coach";
-  sex?: "male" | "female";
+  role: "client" | "coach" | 'guest';
+  sex: "male" | "female" | "other";
   subscriptions?: boolean;
 }

@@ -7,7 +7,7 @@ import { APP_NAME } from "../../config/app";
 
 type Tab = "login" | "register";
 
-export function LoginPage() {
+export default function LoginPage() {
   const { setToken, setUser } = useAuth();
   const navigate = useNavigate();
 

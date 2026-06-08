@@ -3,7 +3,7 @@ import { MobileNav } from "../../../components/shared/MobileNav/MobileNav";
 import { Sidebar } from "../../../components/shared/Sidebar/Sidebar";
 import "./layout.css";
 
-export function Layout() {
+export default function Layout() {
   return (
     <div className="layout">
       <Sidebar className="desktop-only" />

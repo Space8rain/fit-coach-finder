@@ -1,34 +1,53 @@
-import { useAuth } from "../hooks/useAuth";
-import { CoachRoutes } from "./CoachRoutes";
-import { SelectRolePage } from "../pages/shared/SelectRolePage";
-import { ClientRoutes } from "./ClientRoutes";
-import type { User } from "../types/user";
-import { Route, Routes } from "react-router-dom";
-import { LoginPage } from "../pages/shared/LoginPage";
-import NotFoundPage from "../pages/shared/NotFoundPage";
-import { TrainerStatusProvider } from "../providers/TrainerStatusProvider";
+import { createBrowserRouter, type RouteObject } from 'react-router-dom';
+import { Suspense } from 'react';
+import React from 'react';
+import { routesConfig, type RouteConfig } from '@/config/routes';
+import type { User } from '@/types/user';
 
-function resolveElement(token: string | null, user: User | null) {
-  if (!token) return <LoginPage />;
-  if (!user?.role) return <SelectRolePage />;
-  if (user.role === "client") return <ClientRoutes />;
-  if (user.role === "coach") return (
-        <TrainerStatusProvider>
-          <CoachRoutes />
-        </TrainerStatusProvider>
+export function createAppRouter(role: User["role"]) {
+  function wrapWithProviders(
+    providers: Array<React.ComponentType<{ children: React.ReactNode }>> | undefined,
+    element: React.ReactNode
+  ) {
+    return (
+      providers?.reduceRight((acc, Provider) => {
+        return <Provider>{acc}</Provider>;
+      }, element) ?? element
+    );
+  }
+
+  function convert(config: RouteConfig[]): RouteObject[] {
+    return config.map((route): RouteObject => {
+      const Layout = route.layout;
+      const ErrorElement = route.errorElement;
+      const LazyComp = route.element;
+
+      const lazyElement = (
+        <Suspense fallback={<div>Loading...</div>}>
+          <LazyComp />
+        </Suspense>
       );
-  return <LoginPage />;
-};
 
-export function AppRouter() {
-  const { token, user, isLoading } = useAuth();
+      const withLayout = Layout ? <Layout /> : lazyElement;
+      const finalElement = wrapWithProviders(route.providers, withLayout);
 
-  if (isLoading) return <div>Загрузка...</div>;
+      if (route.index) {
+        return {
+          index: true,
+          element: finalElement,
+        };
+      }
 
-  return (
-    <Routes>
-      <Route path="/*" element={resolveElement(token, user)} />
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
-  );
-};
+      return {
+        path: route.path!,
+        element: finalElement,
+        errorElement: ErrorElement ? <ErrorElement /> : undefined,
+        children: route.children ? convert(route.children) : undefined,
+      };
+    });
+  }
+
+
+  const router = createBrowserRouter(convert(routesConfig[role]));
+  return router;
+}

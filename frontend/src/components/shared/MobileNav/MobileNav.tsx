@@ -1,30 +1,26 @@
 import { NavLink } from "react-router-dom";
-import { NAVIGATION } from "../../../config/navigation";
-import { useAuth } from "../../../hooks/useAuth";
+import { useNavigation } from "@/hooks/useNavigationRoutes";
 import "./mobileNav.css";
 
 export function MobileNav({ className }: { className?: string }) {
-  const { user } = useAuth();
-
-  const items = NAVIGATION[user?.role || ''];
+  const navItems = useNavigation();
 
   return (
     <nav className={`mobile-nav ${className || ''}`}>
-      {items.map(i => {
-        const Icon = i.icon;
+      {navItems.map((item) => {
+        const Icon = item.icon;
 
         return (
           <NavLink
-            key={i.path}
-            to={i.path}
+            key={item.path}
+            to={item.path}
             className={({ isActive }) => (isActive ? "active" : "")}
           >
-            <Icon size={24} />
-            {i.label}
+            {Icon && <Icon size={24} />}
+            {item.title}
           </NavLink>
         );
       })}
-
     </nav>
   );
 }
