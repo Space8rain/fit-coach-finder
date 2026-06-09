@@ -57,7 +57,7 @@ interface TelegramWebApp {
     BackButton: TelegramWebAppBackButton;
     HapticFeedback: TelegramWebAppHapticFeedback;
 
-    // DEV-only расширения (без any)
+    // DEV-only расширения
     __mockEvents?: Record<string, (payload?: unknown) => void>;
     __trigger?(event: string, payload?: unknown): void;
     openTelegramLink(url: string): void;

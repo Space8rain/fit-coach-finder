@@ -1,4 +1,4 @@
-import { HeaderProfile } from "../../components/coach/headerProfile/HeaderProfile";
+import { HeaderProfile } from "../../components/coach/HeaderProfile/HeaderProfile";
 import { UpcomingWorkouts } from "../../components/coach/UpcomingWorkouts/UpcomingWorkouts";
 import { useAuth } from "../../hooks/useAuth";
 import { useTrainerStatus } from "../../hooks/useTrainerStatus";

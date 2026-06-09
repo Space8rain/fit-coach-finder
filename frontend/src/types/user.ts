@@ -1,5 +1,4 @@
 export interface User {
-  token: string;
   id: number;
   first_name: string;
   last_name?: string;
@@ -9,7 +8,7 @@ export interface User {
   age?: number;
   height?: number;
   weight?: number;
-  role: "client" | "coach" | 'guest';
-  sex: "male" | "female" | "other";
+  role?: "client" | "coach";
+  sex?: "male" | "female" | "other";
   subscriptions?: boolean;
 }

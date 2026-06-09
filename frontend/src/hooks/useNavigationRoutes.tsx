@@ -24,7 +24,6 @@ export function useNavigation() {
     config.forEach(route => {
       const basePath = route.path ?? "/";
 
-      // если есть children — считаем этот route контейнером, в меню не добавляем
       if (!route.children && route.title) {
         items.push({
           path: basePath,

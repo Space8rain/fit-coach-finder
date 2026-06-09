@@ -8,67 +8,84 @@ import type { User } from "../types/user";
 export function AuthProvider({ children }: { children: ReactNode }) {
   const tgWebApp = useTelegram();
 
-  console.log('tg user:', tgWebApp?.initDataUnsafe?.user);
+  const [token, setToken] = useState<string | null>(() => {
+    return sessionStorage.getItem("token");
+  });
 
-  const [token, setToken] = useState<string | null>(
-    () => sessionStorage.getItem("token")
-  );
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(() => {
+    const raw = sessionStorage.getItem("user");
+    return raw ? JSON.parse(raw) : null;
+  });
+
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (import.meta.env.DEV) {
-      const mockToken = token ?? "mock_dev_token";
-      if (!token) {
-        sessionStorage.setItem("token", mockToken);
-        setToken(mockToken);
+    if (token) sessionStorage.setItem("token", token);
+    else sessionStorage.removeItem("token");
+  }, [token]);
+
+  useEffect(() => {
+    if (user) sessionStorage.setItem("user", JSON.stringify(user));
+    else sessionStorage.removeItem("user");
+  }, [user]);
+
+  useEffect(() => {
+    async function init() {
+      // DEV режим
+      if (import.meta.env.DEV) {
+        if (!token) {
+          const mockToken = "mock_dev_token";
+          setToken(mockToken);
+        }
+
+        setIsLoading(false);
+        return;
       }
 
-      const mockUser = (tgWebApp?.initDataUnsafe?.user ?? null) as User | null;
-      setUser(mockUser);
-
-      setIsLoading(false);
-      return;
-    }
-
-    if (token) {
-      getWhoAmI()
-        .then(res => setUser(res.data))
-        .catch(() => {
-          sessionStorage.removeItem("token");
+      if (token) {
+        try {
+          const res = await getWhoAmI();
+          setUser(res.data);
+        } catch {
           setToken(null);
-        })
-        .finally(() => setIsLoading(false));
-      return;
-    }
+          setUser(null);
+        } finally {
+          setIsLoading(false);
+        }
+        return;
+      }
 
-    // Нет токена — логинимся через TG
-    if (!tgWebApp?.initData) {
+      if (tgWebApp?.initData) {
+        try {
+          const res = await postAuthTg(JSON.stringify(tgWebApp.initData));
+          setToken(res.data.token);
+
+          const who = await getWhoAmI();
+          setUser(who.data);
+        } catch {
+          setError("Ошибка авторизации");
+        } finally {
+          setIsLoading(false);
+        }
+        return;
+      }
+
       setIsLoading(false);
-      return;
     }
 
-    postAuthTg(JSON.stringify(tgWebApp.initData))
-      .then(res => {
-        const newToken: string = res.data.token;
-        sessionStorage.setItem("token", newToken);
-        setToken(newToken);
-        return getWhoAmI();
-      })
-      .then(res => setUser(res.data))
-      .catch(() => setError("Ошибка авторизации"))
-      .finally(() => setIsLoading(false));
+    init();
   }, []);
 
   const logout = () => {
-    sessionStorage.removeItem("token");
     setToken(null);
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ token, setToken, user, setUser, isLoading, error, logout }}>
+    <AuthContext.Provider
+      value={{ token, setToken, user, setUser, isLoading, error, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

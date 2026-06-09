@@ -1,0 +1,11 @@
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+@media (min-width: 640px) {
+  .cards {
+    flex-direction: row;
+  }
+}
