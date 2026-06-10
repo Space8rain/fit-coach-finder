@@ -11,11 +11,13 @@ export type ProfileFormData = {
   role: "client" | "coach" | null;
   [key: string]: string | number | null | undefined;
 } & {
-  name?: string;
-  age?: string;
-  goals?: string;
-  specialization?: string;
-  experience?: string;
+  firstName?: string;
+  lastName?: string;
+  phone?: string;
+  email?: string;
+  birthDate?: string;
+  sex?: string;
+  price?: string;
 };
 
 export type OnChange<T> = (value: T) => void;

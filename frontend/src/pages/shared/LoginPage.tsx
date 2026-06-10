@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { postAuth, postAuthRegister } from "../../api/auth";
 import { useAuth } from "../../hooks/useAuth";
 import { APP_NAME } from "../../config/app";
-import type { User } from "@/types/user";
+// import type { User } from "@/types/user";
 
 type Tab = "login" | "register";
 
@@ -24,21 +24,21 @@ export default function LoginPage() {
     setError(null);
 
     if (import.meta.env.DEV) {
-      const mockToken = "mock_dev_token";
+      // const mockToken = "mock_dev_token";
 
-      const user = {
-        id: 123456,
-        first_name: "Иван",
-        last_name: "Иванов",
-        username: "pussyHunter",
-        language_code: "ru",
-        photo_url: "https://avatarko.ru/img/kartinka/1/Crazy_Frog.jpg",
-        // role: "coach",
-      } as User;
+      // const user = {
+      //   id: 123456,
+      //   firstName: "Иван",
+      //   lastName: "Иванов",
+      //   username: "pussyHunter",
+      //   languageCode: "ru",
+      //   photoUrl: "https://avatarko.ru/img/kartinka/1/Crazy_Frog.jpg",
+      //   // role: "coach",
+      // } as User;
 
-      setToken(mockToken);
-      sessionStorage.setItem("token", mockToken);
-      setUser(user);
+      // setToken(mockToken);
+      // sessionStorage.setItem("token", mockToken);
+      // setUser(user);
 
       setIsLoading(false);
       return;

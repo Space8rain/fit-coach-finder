@@ -14,6 +14,9 @@
   max-width: 640px;
   border-radius: 16px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .header {
@@ -21,7 +24,6 @@
   background: var(--color-bg-primary-dark);
   display: flex;
   align-items: center;
-  gap: 12px;
 }
 
 .headerTitle {

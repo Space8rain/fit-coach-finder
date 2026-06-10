@@ -1,11 +1,9 @@
-import { NavLink } from "react-router-dom";
-import type { User } from "../../../types/user";
-import styles from "./HeaderProfile.module.css";
-import { Settings, Star } from "lucide-react";
+import type { User } from "@/types/user";
 import { useState } from "react";
+import styles from "./UserInfo.module.css";
+import { Star } from "lucide-react";
 
-export const HeaderProfile = ({ user, status, toggleStatus, logout }: { user: User; status: string; toggleStatus: () => void; logout: () => void }) => {
-
+export default function UserInfo({ user, logout }: { user: User; logout: () => void }) {
   const [avatarError, setAvatarError] = useState(false);
 
   return (
@@ -39,19 +37,6 @@ export const HeaderProfile = ({ user, status, toggleStatus, logout }: { user: Us
           <Star size={20} fill="currentColor" />
           <Star size={20} fill="var(--color-bg-primary)" />
         </p>
-      </div>
-
-      <div className={styles.actions}>
-        <NavLink to={'/profile'} className={styles.config}>
-          <Settings size={20} />
-        </NavLink>
-
-        <button
-          className={`${styles.shiftButton} ${status === 'online' ? styles.shiftActive : styles.shiftInactive}`}
-          onClick={toggleStatus}
-        >
-          {status === 'online' ? 'Уйти со смены' : 'Выйти в онлайн'}
-        </button>
       </div>
     </div>
   )

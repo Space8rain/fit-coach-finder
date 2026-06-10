@@ -69,6 +69,12 @@ export const routesConfig: Record<string, RoutesConfig> = {
           icon: Home,
           element: lazy(() => import("@/pages/client/HomePageClient")),
         },
+        {
+          path: 'profile',
+          title: 'Профиль',
+          icon: User,
+          element: lazy(() => import('@/pages/client/ProfilePageClient/ProfilePageClient')),
+        },
       ],
     },
   ],

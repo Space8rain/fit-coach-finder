@@ -1,9 +1,9 @@
 export interface User {
   id: number;
-  first_name: string;
-  last_name?: string;
+  firstName: string;
+  lastName?: string;
   username?: string;
-  photo_url?: string;
+  photoUrl?: string;
 
   age?: number;
   height?: number;

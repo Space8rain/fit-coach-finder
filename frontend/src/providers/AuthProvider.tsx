@@ -7,6 +7,7 @@ import type { User } from "../types/user";
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const tgWebApp = useTelegram();
+  const tgUser = tgWebApp.initDataUnsafe.user;
 
   const [token, setToken] = useState<string | null>(() => {
     return sessionStorage.getItem("token");
@@ -26,8 +27,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [token]);
 
   useEffect(() => {
-    if (user) sessionStorage.setItem("user", JSON.stringify(user));
-    else sessionStorage.removeItem("user");
+    // if (user) sessionStorage.setItem("user", JSON.stringify(user));
+    // else sessionStorage.removeItem("user");
   }, [user]);
 
   useEffect(() => {
@@ -37,6 +38,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (!token) {
           const mockToken = "mock_dev_token";
           setToken(mockToken);
+        }
+
+        if (tgUser && !user) {
+          const user = {
+            id: tgUser.id,
+            firstName: tgUser.first_name,
+            lastName: tgUser.last_name,
+            username: tgUser.username,
+            languageCode: tgUser.language_code,
+            photoUrl: tgUser.photo_url,
+          } as User;
+  
+          setUser(user);
         }
 
         setIsLoading(false);
@@ -64,7 +78,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           const who = await getWhoAmI();
           setUser(who.data);
         } catch {
-          setError("Ошибка авторизации");
+          setError("Ошибка авторизации Tg");
         } finally {
           setIsLoading(false);
         }
@@ -80,6 +94,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = () => {
     setToken(null);
     setUser(null);
+    sessionStorage.removeItem("user");
   };
 
   return (
