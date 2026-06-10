@@ -51,6 +51,7 @@
   * {
     scrollbar-width: thin;
     scrollbar-color: var(--color-bg-accent) var(--color-bg-primary, transparent);
+    box-sizing: border-box;
   }
 
   /* WebKit (Chrome, Edge, Safari, Opera) */

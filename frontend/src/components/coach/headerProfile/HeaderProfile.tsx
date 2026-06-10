@@ -4,7 +4,7 @@ import styles from "./HeaderProfile.module.css";
 import { Settings, Star } from "lucide-react";
 import { useState } from "react";
 
-export const HeaderProfile = ({ user, status, toggleStatus }: { user: User; status: string; toggleStatus: () => void }) => {
+export const HeaderProfile = ({ user, status, toggleStatus, logout }: { user: User; status: string; toggleStatus: () => void; logout: () => void }) => {
 
   const [avatarError, setAvatarError] = useState(false);
 
@@ -26,7 +26,9 @@ export const HeaderProfile = ({ user, status, toggleStatus }: { user: User; stat
 
       <div className={styles.info}>
         <div>
-          <p className={styles.firstName}>{user.first_name}</p>
+          <p className={styles.firstName}>{user.first_name} <button onClick={logout}>
+            Выйти
+          </button></p>
           <p className={styles.lastName}>{user.last_name}</p>
         </div>
 

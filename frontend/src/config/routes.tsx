@@ -62,7 +62,14 @@ export const routesConfig: Record<string, RoutesConfig> = {
       element: lazy(() => import('@/pages/client/HomePageClient')),
       layout: Layout,
       errorElement: ErrorPage,
-      children: [],
+      children: [
+        {
+          index: true,
+          title: "Главная",
+          icon: Home,
+          element: lazy(() => import("@/pages/client/HomePageClient")),
+        },
+      ],
     },
   ],
 }

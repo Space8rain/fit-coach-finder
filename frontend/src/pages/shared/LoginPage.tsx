@@ -31,7 +31,7 @@ export default function LoginPage() {
         first_name: "Иван",
         last_name: "Иванов",
         username: "pussyHunter",
-        language_code: "en",
+        language_code: "ru",
         photo_url: "https://avatarko.ru/img/kartinka/1/Crazy_Frog.jpg",
         // role: "coach",
       } as User;
